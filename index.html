@@ -19,14 +19,14 @@
       <input class="toggle-all" type="checkbox" ng-model="allChecked" ng-click="vm.markAll(checked)">
       <label for="toggle-all">Mark all as complete</label>
       <ul class="todo-list">
-        <li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.complete, editing: todo}">
+        <li ng-repeat="todo in todos | filter:statusFilter track by $index" ng-class="{completed: todo.completed, editing: todo === editedTodo}">
           <div class="view">
             <input class="toggle" type="checkbox" ng-model="todo.completed">
-            <label ng-disabled="vm.editTodo(todo)">{{todo.title}}</label>
+            <label ng-dblclick="vm.editTodo(todo)">{{todo.title}}</label>
             <button type="button" class="destroy" ng-click="vm.removeTodo(todo)"></button>
           </div>
           <form ng-submit="vm.doneEditing(todo)">
-            <input type="text" class="edit" ng-model="todo.title" todo-blur="vm.doneEditing(todo)" todo-focus="todo == editedTodo">
+            <input type="text" class="edit" ng-model="todo.title" todo-blur="vm.doneEditing(todo)" todo-focus="todo ==- editedTodo">
           </form>
         </li>
       </ul>
